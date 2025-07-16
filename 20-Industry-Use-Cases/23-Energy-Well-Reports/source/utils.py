@@ -114,4 +114,5 @@ def get_custom_output_path(meta_data_path: str) -> str:
         Custom output path from segment metadata
     """
     meta = pd.read_json(meta_data_path).loc[0]
-    return meta["output_metadata"]["segment_metadata"][0]["custom_output_path"]
+    paths = [p["custom_output_path"] for p in meta["output_metadata"]["segment_metadata"]]
+    return paths

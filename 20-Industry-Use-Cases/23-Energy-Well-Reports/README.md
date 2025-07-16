@@ -10,7 +10,7 @@ The solution includes:
 - **S3 Bucket**: Storage for document uploads 
 - **Lambda Function**: Docker-based function invokes the Bedrock Data Automation job
 - **Event Trigger**: Automatic processing when files are uploaded to the S3 bucket
-- **IAM Roles**: Least-privilege permissions for Bedrock and S3 access
+- **IAM Role**: IAM Role for Lambda Execution with permissions for Bedrock and S3 
 - **CloudWatch**: Monitoring and logging for Lambda function for processing reports
 
 ## Project Structure
@@ -20,11 +20,11 @@ The solution includes:
 ├── 23-Energy_Well_Reports.ipynb   # Interactive walkthrough notebook
 ├── infra/                         # AWS CDK infrastructure code
 ├── services/                      # Lambda function source code
-├── data/                         # Sample well reports and blueprints
-├── assets/                       # Documentation assets
-├── scripts/                      # Utility scripts
-├── deploy.sh                     # One-click deployment script
-└── README.md                     # This file
+├── data/                          # Sample well reports and blueprints
+├── assets/                        # Documentation assets
+├── scripts/                       # Deployment scripts to build and deploy infrastructure
+├── deploy.sh                      # One-click deployment script
+└── README.md                      # This file
 ```
 
 ## Prerequisites
@@ -64,8 +64,8 @@ Before getting started, ensure you have:
 
 ## Getting Started
 
-### Interactive Notebook (Recommended for Learning)
-
+### Notebook Walkthrough
+ 
 Start with the interactive Jupyter notebook to understand the concepts:
 
 1. **Set up Python environment using uv**
