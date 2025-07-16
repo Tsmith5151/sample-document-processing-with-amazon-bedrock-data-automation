@@ -1,0 +1,220 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"description": "Enhanced blueprint for extracting directional survey data from well reports with comprehensive header information and survey measurements",
+	"class": "Directional Survey Report",
+	"type": "object",
+	"definitions": {
+		"DirectionalSurveyPoint": {
+			"type": "object",
+			"properties": {
+				"MD": {
+					"type": "number",
+					"inferenceType": "explicit",
+					"instruction": "Measured depth of the survey point in feet - extract from survey data table"
+				},
+				"Incl": {
+					"type": "number",
+					"inferenceType": "explicit",
+					"instruction": "Inclination of the wellbore at the survey point in degrees - extract from survey data table"
+				},
+				"TVD": {
+					"type": "number",
+					"inferenceType": "explicit",
+					"instruction": "True vertical depth of the survey point in feet - extract from survey data table"
+				},
+				"VS": {
+					"type": "number",
+					"inferenceType": "explicit",
+					"instruction": "Vertical section of the wellbore at the survey point in feet - extract from survey data table"
+				},
+				"Azim": {
+					"type": "number",
+					"inferenceType": "explicit",
+					"instruction": "Azimuth of the wellbore at the survey point in degrees - extract from survey data table"
+				},
+				"NS": {
+					"type": "number",
+					"inferenceType": "explicit",
+					"instruction": "Northing coordinate of the survey point in feet - extract from survey data table"
+				},
+				"EW": {
+					"type": "number",
+					"inferenceType": "explicit",
+					"instruction": "Easting coordinate of the survey point in feet - extract from survey data table"
+				},
+				"Clsr_Dist": {
+					"type": "number",
+					"inferenceType": "explicit",
+					"instruction": "Closure distance from the surface location in feet - extract from survey data table"
+				},
+				"Clsr_Azi": {
+					"type": "number",
+					"inferenceType": "explicit",
+					"instruction": "Closure azimuth from the surface location in degrees - extract from survey data table"
+				},
+				"Dog_Leg": {
+					"type": "number",
+					"inferenceType": "explicit",
+					"instruction": "Dogleg severity at the survey point in degrees per 100 feet - extract from survey data table"
+				},
+				"Tool": {
+					"type": "string",
+					"inferenceType": "explicit",
+					"instruction": "The survey tool used to collect the data at this point - extract from survey data table"
+				}
+			}
+		},
+		"WellHeaderInfo": {
+			"type": "object",
+			"properties": {
+				"Operator": {
+					"type": "string",
+					"inferenceType": "explicit",
+					"instruction": "Name of the well operator - look in the header section at the top of the document"
+				},
+				"Field": {
+					"type": "string",
+					"inferenceType": "explicit",
+					"instruction": "Name of the oil/gas field - look in the header section at the top of the document"
+				},
+				"Well_Name": {
+					"type": "string",
+					"inferenceType": "explicit",
+					"instruction": "Complete well name including lease and well number - look in the header section"
+				},
+				"Well_Site_Name": {
+					"type": "string",
+					"inferenceType": "explicit",
+					"instruction": "Well site or location name - look in the header section"
+				},
+				"Date": {
+					"type": "string",
+					"inferenceType": "explicit",
+					"instruction": "Survey date or report date - look in the header section"
+				},
+				"Survey_Provider": {
+					"type": "string",
+					"inferenceType": "explicit",
+					"instruction": "Company that provided the directional survey services - look in the header section"
+				}
+			}
+		},
+		"SurveyReferences": {
+			"type": "object",
+			"properties": {
+				"NE_Reference": {
+					"type": "string",
+					"inferenceType": "explicit",
+					"instruction": "North-East coordinate reference system used - look in header or reference section"
+				},
+				"Vertical_Reference": {
+					"type": "string",
+					"inferenceType": "explicit",
+					"instruction": "True Vertical Depth reference datum (e.g., KB, GL, MSL) - look in header section"
+				},
+				"VS_Reference": {
+					"type": "string",
+					"inferenceType": "explicit",
+					"instruction": "Vertical Section reference direction or target - look in header section"
+				},
+				"Survey_Calculation_Method": {
+					"type": "string",
+					"inferenceType": "explicit",
+					"instruction": "Mathematical method used for survey calculations (e.g., Minimum Curvature) - look in header section"
+				},
+				"Ground_Level": {
+					"type": "string",
+					"inferenceType": "explicit",
+					"instruction": "Ground level elevation value and units - look in header section"
+				},
+				"North_Reference": {
+					"type": "string",
+					"inferenceType": "explicit",
+					"instruction": "North reference type (e.g., True North, Magnetic North, Grid North) - look in header section"
+				},
+				"Grid_Convergence": {
+					"type": "string",
+					"inferenceType": "explicit",
+					"instruction": "Grid convergence angle value - look in header section"
+				}
+			}
+		},
+		"Directional_Survey_Data": {
+			"type": "object",
+			"properties": {
+				"MD": {
+					"type": "number",
+					"inferenceType": "explicit",
+					"instruction": "Measured depth of the survey point in feet - extract from survey data table"
+				},
+				"Incl": {
+					"type": "number",
+					"inferenceType": "explicit",
+					"instruction": "Inclination of the wellbore at the survey point in degrees - extract from survey data table"
+				},
+				"TVD": {
+					"type": "number",
+					"inferenceType": "explicit",
+					"instruction": "True vertical depth of the survey point in feet - extract from survey data table"
+				},
+				"VS": {
+					"type": "number",
+					"inferenceType": "explicit",
+					"instruction": "Vertical section of the wellbore at the survey point in feet - extract from survey data table"
+				},
+				"Azim": {
+					"type": "number",
+					"inferenceType": "explicit",
+					"instruction": "Azimuth of the wellbore at the survey point in degrees - extract from survey data table"
+				},
+				"NS": {
+					"type": "number",
+					"inferenceType": "explicit",
+					"instruction": "Northing coordinate of the survey point in feet - extract from survey data table"
+				},
+				"EW": {
+					"type": "number",
+					"inferenceType": "explicit",
+					"instruction": "Easting coordinate of the survey point in feet - extract from survey data table"
+				},
+				"Clsr_Dist": {
+					"type": "number",
+					"inferenceType": "explicit",
+					"instruction": "Closure distance from the surface location in feet - extract from survey data table"
+				},
+				"Clsr_Azi": {
+					"type": "number",
+					"inferenceType": "explicit",
+					"instruction": "Closure azimuth from the surface location in degrees - extract from survey data table"
+				},
+				"Dog_Leg": {
+					"type": "number",
+					"inferenceType": "explicit",
+					"instruction": "Dogleg severity at the survey point in degrees per 100 feet - extract from survey data table"
+				},
+				"Tool": {
+					"type": "string",
+					"inferenceType": "explicit",
+					"instruction": "The survey tool used to collect the data at this point - extract from survey data table"
+				}
+			}
+		}
+	},
+	"properties": {
+		"Header_Information": {
+			"$ref": "#/definitions/WellHeaderInfo",
+			"instruction": "Extract all well identification and operator information from the document header"
+		},
+		"Survey_References": {
+			"$ref": "#/definitions/SurveyReferences",
+			"instruction": "Extract all coordinate and reference system information from the header section"
+		},
+		"Directional_Survey_Data": {
+			"type": "array",
+			"instruction": "Extract only the directional survey measurements from the survey data table",
+			"items": {
+				"$ref": "#/definitions/Directional_Survey_Data"
+			}
+		}
+	}
+}
