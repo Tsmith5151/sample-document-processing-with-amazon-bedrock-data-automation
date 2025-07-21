@@ -1,40 +1,25 @@
 {
 	"$schema": "http://json-schema.org/draft-07/schema#",
-	"description": "Enhanced blueprint for extracting comprehensive completion data from hydraulic fracturing reports including well details, perforation data, stimulation parameters, and water usage",
-	"class": "Completion Report",
+	"description": "Blueprint for extracting comprehensive completion data from hydraulic fracturing reports including well details, perforation data, stimulation parameters, and water usage",
+	"class": "Engineering Report",
 	"type": "object",
 	"definitions": {
 		"Completion_Summary": {
 			"type": "object",
 			"properties": {
+				"Water": {
+					"type": "number",
+					"inferenceType": "explicit",
+					"instruction": "Extract the water pumped from the stimulation table only on the wellbore diagram page"
+				},
 				"Proppant_Volume": {
 					"type": "number",
 					"inferenceType": "explicit",
-					"instruction": "Extract the total proppant volume pumped for the stage in pounds from the completion summary"
-				},
-				"Average_Rate": {
-					"type": "number",
-					"inferenceType": "explicit",
-					"instruction": "Extract the average pumping rate in barrels per minute (bpm) for the stage from the completion summary"
-				},
-				"Maximum_Rate": {
-					"type": "number",
-					"inferenceType": "explicit",
-					"instruction": "Extract the maximum pumping rate in barrels per minute (bpm) for the stage from the completion summary"
-				},
-				"Average_Pressure": {
-					"type": "number",
-					"inferenceType": "explicit",
-					"instruction": "Extract the average treating pressure in psi for the stage from the completion summary"
-				},
-				"Maximum_Pressure": {
-					"type": "number",
-					"inferenceType": "explicit",
-					"instruction": "Extract the maximum treating pressure in psi for the stage from the completion summary"
+					"instruction": "Extract the proppant volume pumped from the stimulation table only on the wellbore diagram page"
 				}
 			}
 		},
-		"WellIdentification": {
+        "WellIdentification": {
 			"type": "object",
 			"properties": {
 				"API_Number": {
@@ -104,43 +89,18 @@
 				}
 			}
 		},
-		"Perforation_Data": {
+        "Perforation_Data": {
 			"type": "object",
 			"properties": {
-				"Top_Perf": {
+				"Top Perf": {
 					"type": "number",
 					"inferenceType": "explicit",
-					"instruction": "Extract the top (shallowest) perforation depth in feet MD from the perforation summary or wellbore diagram"
+					"instruction": "Extract the top perf from the perforation summary only on the wellbore diagram page"
 				},
-				"Bottom_Perf": {
+				"Bottom Perf": {
 					"type": "number",
 					"inferenceType": "explicit",
-					"instruction": "Extract the bottom (deepest) perforation depth in feet MD from the perforation summary or wellbore diagram"
-				}
-			}
-		},
-		"Water_Sources": {
-			"type": "object",
-			"properties": {
-				"Source_Name": {
-					"type": "string",
-					"inferenceType": "explicit",
-					"instruction": "Extract the name or identifier of the water source from the water supply section"
-				},
-				"Supply_Type": {
-					"type": "string",
-					"inferenceType": "explicit",
-					"instruction": "Extract the water supply type (public, private, surface water, groundwater) from the water supply section"
-				},
-				"Volume_Used": {
-					"type": "number",
-					"inferenceType": "explicit",
-					"instruction": "Extract the total volume of water used from this source in barrels from the water supply summary"
-				},
-				"Source_Location": {
-					"type": "string",
-					"inferenceType": "explicit",
-					"instruction": "Extract the latitude/longitude coordinates or location description of the water source"
+					"instruction": "Extract the bottom perf from the perforation summary only on the wellbore diagram page"
 				}
 			}
 		}
@@ -155,13 +115,6 @@
 			"instruction": "Extract perforation interval data for each stage from the wellbore diagram, including top/bottom depths and stage numbers",
 			"items": {
 				"$ref": "#/definitions/Perforation_Data"
-			}
-		},
-		"Water_Sources": {
-			"type": "array",
-			"instruction": "Extract water supply information from the Hydraulic Fracture Stimulation section including source names, types, volumes, and locations",
-			"items": {
-				"$ref": "#/definitions/Water_Sources"
 			}
 		},
 		"Completion_Summary": {

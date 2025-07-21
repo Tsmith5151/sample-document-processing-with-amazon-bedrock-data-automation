@@ -15,49 +15,43 @@ logger = get_logger(__name__)
 
 
 def create_custom_blueprint(
-    blueprint_names: List[str], session: boto3.Session = None
+    blueprint_name: str, session: boto3.Session = None
 ) -> List[str]:
     """
     Create custom blueprints from JSON schema files.
 
     Args:
-        blueprint_names: List of blueprint names (without .json extension)
+        blueprint_name: Name of custom blueprint (without .json extension)
         session: boto3.Session object (optional, uses default if None)
 
     Returns:
-        List of blueprint ARNs
+         Blueprint ARN
 
     Raises:
         FileNotFoundError: If blueprint JSON file doesn't exist
         ClientError: If AWS API call fails
     """
-    results = []
-
     if session is None:
         session = boto3.Session()
 
     client = session.client("bedrock-data-automation")
-    for blueprint_name in blueprint_names:
-        blueprint_path = os.path.join("data", "blueprints", f"{blueprint_name}.json")
+    blueprint_path = os.path.join("data", "blueprints", f"{blueprint_name}.json")
 
-        with open(blueprint_path) as f:
-            blueprint_schema = json.load(f)
+    with open(blueprint_path) as f:
+        blueprint_schema = json.load(f)
 
-        try:
-            response = client.create_blueprint(
-                blueprintName=blueprint_name,
-                schema=json.dumps(blueprint_schema),
-                type="DOCUMENT",
-            )
-            arn = response["blueprint"]["blueprintArn"]
-            results.append(arn)
-            logger.info(f"Created blueprint {blueprint_name}: {arn}")
-        except ClientError as e:
-            logger.error(f"Failed to create blueprint {blueprint_name}: {e}")
-            continue
-    return results
-
-
+    try:
+        response = client.create_blueprint(
+            blueprintName=blueprint_name,
+            schema=json.dumps(blueprint_schema),
+            type="DOCUMENT",
+        )
+        arn = response["blueprint"]["blueprintArn"]
+        logger.info(f"Created blueprint {blueprint_name}: {arn}")
+        return arn
+    except ClientError as e:
+        logger.error(f"Failed to create blueprint {blueprint_name}: {e}")
+        
 def get_processing_results(invocation_arn: str, session=None) -> dict:
     """
     Get results from a Bedrock Data Automation job.
